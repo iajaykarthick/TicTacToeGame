@@ -1,0 +1,23 @@
+<button class="gameButton" nbButton outline status="success" *ngIf="!isgameStarted" (click)="newGame()">Start new Game</button>
+<button class="gameButton" nbButton outline status="danger" *ngIf="isgameStarted"  (click)="endGame()">End Game</button>
+
+<h2 *ngIf="winner">
+  Player {{ winner }} won the game !!!
+</h2>
+
+<h2 *ngIf="isGameTied">
+  Match Tied!!!
+</h2>
+
+<main>
+  <app-square
+          *ngFor="let val of squares; let i = index"
+          [value]="val"
+          [isGameStarted]="isgameStarted"
+          (click)="makeMove(i)"
+          >
+  </app-square>
+</main>
+
+<h1 *ngIf="!winner && isgameStarted">Current Player: {{ player }}</h1>
+<h1 *ngIf="winner || isGameTied">Game Ended</h1>
